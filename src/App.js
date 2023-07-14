@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import './App.css';
 
 export default function App(props){
@@ -14,6 +14,10 @@ export default function App(props){
     alignItems: "center",
     backgroundColor: `${sttl}`,
  }
+
+   useEffect(()=>{
+    console.log("heh")
+   });
  
   //<button onClick={() => onRandomCounter(20,30)}>RND</button> 
   // <button onClick={(e)=>setRed(red===true ? false : true)}>Colour change</button>
