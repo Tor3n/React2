@@ -4,28 +4,31 @@ import Todo from './components/Todo';
 
 export default function App(props){
 
-  React.state={
-    styleVar: 1, 
-  }
+
   const[elems, setElems] = useState(["asd","fff"])
   const[elemInpt, setElemInpt] = useState('')
-  const handleChange=((e)=>{setElemInpt(e.target.value)});
+  const[count, setCount] = useState(1)
+
+  const handleChange=((e)=>{setElemInpt(e.target.value)}); 
+
+  const addTodo = useCallback(()=>{setElems((t)=>[...t, elemInpt])}, [elems]);
+
+  const increment = () =>{
+    setCount((count)=>count+1);
+  }
   
 
    return (
     <div className="App">
       
       <div className="controls">
-        <Todo arg={elems}/>
+        <Todo arg={elems} addTodo={addTodo}/>
         <input className="elem" type="text" id="inp1" onChange={handleChange} value={elemInpt}></input>
-        <button className="elem" onClick={(e)=>{setElems(elems=>[...elems, elemInpt]); setElemInpt(elemInpt=>"")}} >ADD TO LIST</button>
-        <button className="elem" >Change style</button>
+
+        <p>{count}</p>
+        <button className="elem" onClick={increment} >inctement</button>
       </div>
     </div>
   );   
 }
 
-  const memF=(elems )=>{
-    //setElems();
-    //console.log("why?> "+ elems );
-  }
