@@ -1,40 +1,31 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useCallback, useState} from 'react';
 import './App.css';
+import Todo from './components/Todo';
 
 export default function App(props){
 
-  const[calls, setCalls] = useState(0) 
-  const[red, setRed] = useState(false)
-  const sttl = red===false? "aquamarine" : "red";
-  const slf =  useMemo((e)=>slowFunction(calls),[calls]);
-
-  const myComponentStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: `${sttl}`,
- }
-
-   useEffect(()=>{
-    console.log("heh")
-   });
- 
-  //<button onClick={() => onRandomCounter(20,30)}>RND</button> 
-  // <button onClick={(e)=>setRed(red===true ? false : true)}>Colour change</button>
+  React.state={
+    styleVar: 1, 
+  }
+  const[elems, setElems] = useState(["asd","fff"])
+  const[elemInpt, setElemInpt] = useState('')
+  const handleChange=((e)=>{setElemInpt(e.target.value)});
+  
 
    return (
-    <div style={myComponentStyle} className="App">
-      <div className="CallsLable">REST CALLS: {calls}</div>
+    <div className="App">
+      
       <div className="controls">
-        <button onClick={(e)=>setCalls(calls+1)}>START CALL</button>
-        <button onClick={(e)=>setRed(red===true ? false : true)} >Colour change</button>
+        <Todo arg={elems}/>
+        <input className="elem" type="text" id="inp1" onChange={handleChange} value={elemInpt}></input>
+        <button className="elem" onClick={(e)=>{setElems(elems=>[...elems, elemInpt]); setElemInpt(elemInpt=>"")}} >ADD TO LIST</button>
+        <button className="elem" >Change style</button>
       </div>
     </div>
   );   
 }
 
-function slowFunction(num ){
-  for(let i = 0; i <= 2000000000; i++ ){}
-  //console.log("sttl "+sttl)
-  return console.log("calling slow function " +num*2)
-}
+  const memF=(elems )=>{
+    //setElems();
+    //console.log("why?> "+ elems );
+  }
