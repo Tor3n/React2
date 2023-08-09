@@ -12,6 +12,7 @@ export async function setUsername(name){
 }
 
 export async function clearForage(){
+  
   return localforage.clear();
 }
 
